@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -47,30 +48,36 @@ public class BuscarYReemplazar extends Application {
 		VBox primerosCheckBoxs= new VBox(5,mayusYmin,expresionRegular);
 		VBox segundosCheckBoxs= new VBox(5,buscarAtras,resaltar);
 		VBox botonesDerecha= new VBox(5,buscarBoton,reemplazarBoton,reemplazarTodoBoton,cerrarAppBoton,ayudaBoton);
+	
 		
 		HBox cajaCheckBox= new HBox(5,primerosCheckBoxs,segundosCheckBoxs);
 		
-		GridPane root = new GridPane();
-		root.setHgap(5);
-		root.setVgap(5);
-		root.setPadding(new Insets(5));
-		root.addRow(0, new Label("Buscar:"),buscarTexto);
-		root.addRow(1, new Label("Reemplazar con:"),reemplazarTexto);
-		root.add(cajaCheckBox, 1, 2);
-		root.add(botonesDerecha,2,0);
+		GridPane panelGrid = new GridPane();
+		panelGrid.setHgap(5);
+		panelGrid.setVgap(5);
+		panelGrid.setPadding(new Insets(5));
+		panelGrid.addRow(0, new Label("Buscar:"),buscarTexto);
+		panelGrid.addRow(1, new Label("Reemplazar con:"),reemplazarTexto);
+		panelGrid.add(cajaCheckBox, 1, 2);
+		panelGrid.add(botonesDerecha,2,0);
 		
 		ColumnConstraints[] cols = {
 
 				new ColumnConstraints(), 
+				new ColumnConstraints(),
 				new ColumnConstraints() 
 		};
 
-		cols[1].setHgrow(Priority.ALWAYS);	
-		root.getColumnConstraints().addAll(cols);
+		cols[1].setHgrow(Priority.ALWAYS);
+
+		panelGrid.getColumnConstraints().addAll(cols);
 		
 		GridPane.setRowSpan(botonesDerecha, 3);
 			
-			
+		BorderPane root= new BorderPane();
+		root.setCenter(panelGrid);
+		root.setRight(botonesDerecha);
+		root.setPadding(new Insets(5));
 			
 			
 		
